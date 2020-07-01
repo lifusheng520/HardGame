@@ -16,18 +16,23 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import dao.impl.DataBaseDaoImpl;
+import dao.impl.PlayerDaoImpl;
 import pojo.Player;
 import util.JFrameToolUtil;
 import util.ScannerUtil;
 
+/**
+ * 用户注册窗体模块
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class PlayerRegister extends JFrame {
 
 	/**
-	 * 用户注册窗体模块
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -103,7 +108,7 @@ public class PlayerRegister extends JFrame {
 						Player p = new Player(textField.getText(), String.valueOf(passwordField.getPassword()));
 
 						// 注册玩家账号
-						if (dbdi.insert(p)) {
+						if (new PlayerDaoImpl().register(p)) {
 
 							// 如果账号注册成功，初始化用户的积分
 							dbdi.initScore(textField.getText());

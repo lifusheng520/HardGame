@@ -15,17 +15,21 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import dao.impl.DataBaseDaoImpl;
+import dao.impl.PlayerDaoImpl;
 import util.JFrameToolUtil;
 
+/**
+ * 用户注册窗体模块
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class PlayerLogin extends JFrame {
 
 	/**
-	 * 用户注册窗体模块
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -70,11 +74,7 @@ public class PlayerLogin extends JFrame {
 				String account = textField.getText();
 				String password = String.valueOf(passwordField.getPassword());
 
-				DataBaseDaoImpl dbdi = new DataBaseDaoImpl();
-
-				if (dbdi.query(account, password)) {
-					// 完成操作 关闭连接 释放资源
-					dbdi.close();
+				if (new PlayerDaoImpl().login(account, password)) {
 
 					JOptionPane.showMessageDialog(contentPane, "账号密码正确，登录成功！");
 

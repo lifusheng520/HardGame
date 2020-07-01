@@ -6,7 +6,7 @@ public interface PlayerDao {
 	/**
 	 * 用户登录功能
 	 * 
-	 * @param username
+	 * @param account
 	 *            用户名
 	 * @param password
 	 *            密码
@@ -18,8 +18,10 @@ public interface PlayerDao {
 	/**
 	 * 用户注册功能
 	 * 
-	 * @param user
+	 * @param p
 	 *            被注册的用户信息
+	 * 
+	 * @return 注册成功返回true
 	 */
 	public abstract boolean register(Player p);
 

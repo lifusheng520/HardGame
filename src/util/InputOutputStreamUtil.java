@@ -24,10 +24,14 @@ import pojo.Player;
 
 public class InputOutputStreamUtil {
 
-	// 封装最高分文件路径
+	/**
+	 * 封装最高分文件路径
+	 */
 	private static final String highestfile = "src" + File.separator + "dataFile" + File.separator + "highest.txt";
 
-	// 封装游戏规则说明文件路径
+	/**
+	 * 封装游戏规则说明文件路径
+	 */
 	private static final String rulesfile = "src" + File.separator + "dataFile" + File.separator + "rules.txt";
 
 	/**

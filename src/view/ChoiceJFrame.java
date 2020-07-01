@@ -22,6 +22,12 @@ import util.JFrameToolUtil;
 import util.PlayMusicUtil;
 import javax.swing.JMenuItem;
 
+/**
+ * 游戏的选择关卡界面
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class ChoiceJFrame extends JFrame {
 
 	/**
@@ -33,10 +39,17 @@ public class ChoiceJFrame extends JFrame {
 	private JPanel contentPane;
 	// 未通过为false 通过true
 	private boolean[][] map = new boolean[2][3];
+
+	/**
+	 * 当前玩家的账号
+	 */
 	private String currentAccount;
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家的账号
 	 */
 	public ChoiceJFrame(String account) {
 		// 设置当前玩家账户
@@ -44,7 +57,7 @@ public class ChoiceJFrame extends JFrame {
 
 		// 初始化map标记数组
 		this.initMap();
-		
+
 		// 播放音乐
 		PlayMusicUtil.playMusic();
 

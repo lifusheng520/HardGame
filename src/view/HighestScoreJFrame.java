@@ -24,13 +24,14 @@ import java.awt.event.ActionEvent;
  * 查看所有关卡的历史最高得分
  * 
  * @author 李福生
+ * @version V1.0
  */
 public class HighestScoreJFrame extends JFrame {
 
 	/**
-	 * 
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -43,6 +44,9 @@ public class HighestScoreJFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public HighestScoreJFrame(String account) {
 		// 设置当前玩家账号

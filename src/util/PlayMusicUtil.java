@@ -18,6 +18,10 @@ public class PlayMusicUtil {
 	 * 音乐文件的路径
 	 */
 	private static String file1 = "src" + File.separator + "resource" + File.separator + "bgm.wav";
+
+	/**
+	 * 音乐文件的路径
+	 */
 	private static String file2 = "src" + File.separator + "resource" + File.separator + "game.wav";
 
 	/**
@@ -25,10 +29,33 @@ public class PlayMusicUtil {
 	 */
 	private static AudioClip christmas;
 
-	// 记录音乐是否已经播放
+	/**
+	 * 记录音乐是否已经播放
+	 */
 	public static boolean played = false;
 
-	// 加载音乐文件
+	/**
+	 * 音乐播放设置可以播放为true
+	 */
+	public static boolean canPlay = true;
+
+	/**
+	 * 设置音乐是否可以播放
+	 * 
+	 * @param b
+	 *            为false关闭音乐
+	 */
+	public static void setting(boolean b) {
+		canPlay = b;
+	}
+
+	/**
+	 * 加载音乐文件
+	 * 
+	 * @param file
+	 *            音乐文件的路径
+	 * @return 返回一个音乐的操作对象
+	 */
 	private static AudioClip loadSound(String file) {
 		URL url = null;
 		try {
@@ -43,6 +70,10 @@ public class PlayMusicUtil {
 	 * 播放音乐
 	 */
 	public static void playMusic() {
+
+		// 如果不可以播放
+		if (!canPlay)
+			return;
 
 		// 已经在播放就不能播放了
 		if (played)
@@ -73,6 +104,9 @@ public class PlayMusicUtil {
 	 */
 	public static void rePlay() {
 
+		if (!canPlay) // 不能播放
+			return;
+
 		// 游戏已经播放先暂停播放
 		if (played)
 			christmas.stop();
@@ -89,6 +123,10 @@ public class PlayMusicUtil {
 	 *            游戏关卡
 	 */
 	public static void loadGameMusic(int k) {
+
+		// 如果不能播放则不加载游戏音乐
+		if (!canPlay)
+			return;
 
 		// 先暂停音乐
 		stopMusic();

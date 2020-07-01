@@ -7,20 +7,42 @@ package pojo;
  *
  */
 public class Player implements Comparable<Player> {
-	// 姓名
+	/**
+	 * 姓名
+	 */
 	private String account;
 
-	// 密码
+	/**
+	 * 密码
+	 */
 	private String password;
 
-	// 得分
+	/**
+	 * 得分
+	 */
 	private int score;
 
+	/**
+	 * 根据账号和得分构造一个玩家类
+	 * 
+	 * @param account
+	 *            玩家账号
+	 * @param score
+	 *            玩家得分
+	 */
 	public Player(String account, int score) {
 		this.account = account;
 		this.score = score;
 	}
 
+	/**
+	 * 根据账号密码构造一个玩家类
+	 * 
+	 * @param account
+	 *            账号
+	 * @param password
+	 *            密码
+	 */
 	public Player(String account, String password) {
 		this.account = account;
 		this.password = password;
@@ -50,12 +72,9 @@ public class Player implements Comparable<Player> {
 		this.score = score;
 	}
 
-	@Override
-	public String toString() {
-		return "Player [account=" + account + ", score=" + score + "]";
-	}
-
-	// 实现Comparable接口使用得分作为比较
+	/**
+	 * 实现Comparable接口使用得分作为比较
+	 */
 	@Override
 	public int compareTo(Player o) {
 		return o.score - this.score;

@@ -17,19 +17,26 @@ import util.PlayMusicUtil;
 
 import javax.swing.JMenuItem;
 
+/**
+ * 开始游戏窗体模块
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class StartJFrame extends JFrame {
 
 	/**
-	 * 开始游戏窗体模块
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String currentAccount;
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public StartJFrame(String account) {
 		this.currentAccount = account;
@@ -109,6 +116,19 @@ public class StartJFrame extends JFrame {
 			}
 		});
 		gameSettingMenu.add(stopMusicMenuItem);
+
+		JMenuItem closeMusicMenuItem = new JMenuItem("\u5173\u95ED\u97F3\u4E50");
+		closeMusicMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// 设置音乐为不可播放
+				PlayMusicUtil.setting(false);
+
+				// 停止音乐播放
+				PlayMusicUtil.stopMusic();
+			}
+		});
+		gameSettingMenu.add(closeMusicMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

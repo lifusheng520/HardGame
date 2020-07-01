@@ -18,14 +18,14 @@ import util.JFrameToolUtil;
  * 游戏规则窗体类
  * 
  * @author 李福生
- *
+ * @version V1.0
  */
 public class GameRulesJFrame extends JFrame {
 
 	/**
-	 * 
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	// 游戏的账号
 	private String currentAccount;
@@ -34,6 +34,9 @@ public class GameRulesJFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public GameRulesJFrame(String account) {
 		// 设置账号

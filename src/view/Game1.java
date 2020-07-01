@@ -30,14 +30,19 @@ import util.JFrameToolUtil;
 import util.PlayMusicUtil;
 import util.RandomNumberUtil;
 
+/**
+ * 游戏有时间限制，在规定时间内按对一定数量则过关，否则出局，答对越多得分越高
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
+
 public class Game1 extends JFrame implements GameTimerDao {
 
 	/**
-	 * 游戏有时间限制，在规定时间内按对一定数量则过关，否则出局，答对越多得分越高
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	// 当前玩家的账号
@@ -83,6 +88,9 @@ public class Game1 extends JFrame implements GameTimerDao {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public Game1(String account) {
 
@@ -177,7 +185,7 @@ public class Game1 extends JFrame implements GameTimerDao {
 
 				// 如果不为空说明任务已开启了
 				if (task != null)
-					task.closeTask();	// 关闭任务
+					task.closeTask(); // 关闭任务
 
 				// 返回选择关卡
 				new ChoiceJFrame(currentAccount).setVisible(true);
@@ -207,7 +215,7 @@ public class Game1 extends JFrame implements GameTimerDao {
 	}
 
 	@Override
-	public void gameRun() {	// 启动游戏
+	public void gameRun() { // 启动游戏
 		// 更改按钮状态
 		this.btnNewButton.setText("出拳");
 
@@ -308,11 +316,11 @@ public class Game1 extends JFrame implements GameTimerDao {
 		// 创建数据库实现对象
 		DataBaseDaoImpl dbdi = new DataBaseDaoImpl();
 
-		// 获取玩家之前的得分
-		this.score += dbdi.getScore(this.currentAccount);
+		// 获取玩家之前的得分累加
+		int sumScore = this.score + dbdi.getScore(this.currentAccount);
 
 		// 更新玩家得分
-		if (dbdi.update(this.currentAccount, this.score)) {
+		if (dbdi.update(this.currentAccount, sumScore)) {
 			JOptionPane.showMessageDialog(contentPane, "保存成功!");
 
 		} else {

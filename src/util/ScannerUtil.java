@@ -1,5 +1,11 @@
 package util;
 
+/**
+ * 一个简单的输入处理工具类
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class ScannerUtil {
 
 	/**

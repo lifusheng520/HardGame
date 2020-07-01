@@ -20,19 +20,26 @@ import javax.swing.border.EmptyBorder;
 import dao.impl.DataBaseDaoImpl;
 import util.JFrameToolUtil;
 
+/**
+ * 用户积分排行窗体模块
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class RankJFrame extends JFrame {
 
 	/**
-	 * 用户积分排行窗体模块
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String currentAccount;
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public RankJFrame(String account) {
 		this.currentAccount = account;

@@ -23,14 +23,19 @@ import util.InputOutputStreamUtil;
 import util.JFrameToolUtil;
 import util.PlayMusicUtil;
 
+/**
+ * 一个简单的计时扇巴掌游戏，扇的次数越接近37分数越高
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
+
 public class Game2 extends JFrame implements GameTimerDao {
 
 	/**
-	 * 一个简单的计时扇巴掌游戏，扇的次数越接近37分数越高
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 
@@ -71,6 +76,9 @@ public class Game2 extends JFrame implements GameTimerDao {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public Game2(String account) {
 

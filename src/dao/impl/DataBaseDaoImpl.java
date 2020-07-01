@@ -18,12 +18,20 @@ import pojo.Player;
  */
 
 public class DataBaseDaoImpl implements DataBaseDao {
-	// 数据库连接对象
+
+	/**
+	 * 数据库连接对象
+	 */
 	private Connection conn = null;
-	// 数据库操作对象
+
+	/**
+	 * 数据库操作对象
+	 */
 	private PreparedStatement pstate = null;
 
-	// 加载jdbc驱动 并 建立数据库连接
+	/**
+	 * 加载jdbc驱动 并 建立数据库连接
+	 */
 	public DataBaseDaoImpl() {
 		try {
 			Class.forName(DBDRIVER);
@@ -70,6 +78,10 @@ public class DataBaseDaoImpl implements DataBaseDao {
 		} catch (SQLException e) {
 			System.out.println("数据库查询异常！");
 		}
+
+		// 释放资源
+		this.close();
+
 		return flag;
 	}
 
@@ -118,6 +130,9 @@ public class DataBaseDaoImpl implements DataBaseDao {
 			System.out.println("数据库插入失败！");
 			return false;
 		}
+
+		this.close();// 释放资源
+
 		return true;
 	}
 

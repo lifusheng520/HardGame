@@ -28,14 +28,18 @@ import util.JFrameToolUtil;
 import util.PlayMusicUtil;
 import util.RandomNumberUtil;
 
+/**
+ * 这是一个简单的石头剪刀游戏
+ * 
+ * @author 李福生
+ * @version V1.0
+ */
 public class Game0 extends JFrame {
 
 	/**
-	 * 这是一个简单的石头剪刀游戏
-	 * 
-	 * @author 李福生
+	 * 记录类版本
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	// 红方和蓝方的随机数
 	private int redNumber;
@@ -59,12 +63,15 @@ public class Game0 extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param account
+	 *            当前玩家账号
 	 */
 	public Game0(String account) {
-		
+
 		// 播放游戏内音乐
 		PlayMusicUtil.loadGameMusic(1);
-		
+
 		setTitle("\u6700\u5F3A\u6BD4\u62FC");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Game0.class.getResource("/resource/title.png")));
 		// 设置当前玩家账号
@@ -144,10 +151,10 @@ public class Game0 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// 如果用户不玩了就退出游戏
 				if (JOptionPane.showConfirmDialog(contentPane, "要在玩一会吗？") == 1) {
-					
+
 					// 关闭音乐
 					PlayMusicUtil.stopMusic();
-					
+
 					new ChoiceJFrame(currentAccount).setVisible(true);
 					(Game0.this).dispose();
 				}
@@ -227,10 +234,10 @@ public class Game0 extends JFrame {
 				// 完成操作 关闭连接 释放资源
 				dbdi.close();
 			}
-			
+
 			// 关闭游戏音乐
 			PlayMusicUtil.stopMusic();
-			
+
 			if (JOptionPane.showConfirmDialog(contentPane, "要再玩一把吗？", "Win", JOptionPane.YES_NO_OPTION) == 0) {
 				// 继续开启游戏窗体
 				new Game0(this.currentAccount).setVisible(true);
