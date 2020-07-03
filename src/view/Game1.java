@@ -327,12 +327,12 @@ public class Game1 extends JFrame implements GameTimerDao {
 			JOptionPane.showMessageDialog(contentPane, "出现了一点小问题，数据保存失败!");
 		}
 
-		dbdi.openNextLevel(this.currentAccount, 2);
 
 		// 如果达到了进入下一关的条件
 		if (this.score >= 3) {
 
 			// 开启下一关
+			dbdi.openNextLevel(this.currentAccount, 2);
 
 			JOptionPane.showMessageDialog(contentPane, "得分保存成功！恭喜进入下一关！");
 		} else {

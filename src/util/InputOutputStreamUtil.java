@@ -175,9 +175,11 @@ public class InputOutputStreamUtil {
 		try {
 			// 创建对象读取文件
 			bw = new BufferedWriter(new FileWriter(highestfile, true));
+			
 			// 拼接数据格式
 			StringBuffer sb = new StringBuffer("Game");
 			sb.append(gamePass).append(":").append(account).append("=").append(score);
+			
 			bw.write(sb.toString()); // 写入数据
 			bw.newLine(); // 换行
 			bw.flush(); // 刷新

@@ -130,4 +130,13 @@ public interface DataBaseDao {
 	 * @return 存在返回true 不存在返回false
 	 */
 	public abstract boolean accountExist(String account);
+
+	/**
+	 * 删除给定表中所有数据
+	 * 
+	 * @param tableName
+	 *            操作的表名
+	 * @return 成功返回true 否则false
+	 */
+	public abstract boolean deleteAllRecord(String tableName);
 }

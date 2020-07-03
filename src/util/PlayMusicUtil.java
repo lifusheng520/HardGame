@@ -97,6 +97,7 @@ public class PlayMusicUtil {
 
 		christmas.stop(); // 暂停音乐
 		played = false; // 标记为关闭状态
+		canPlay = true; // 标记音乐可以继续播放状态
 	}
 
 	/**

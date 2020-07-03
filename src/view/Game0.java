@@ -47,19 +47,28 @@ public class Game0 extends JFrame {
 
 	// 当前的用户账号
 	private String currentAccount;
+
 	// 获胜方
 	private String winner;
+
 	// 玩家给定的答案
 	private String answer;
+
 	// 正确的个数
 	private int rightCount = 0;
+
 	// 红方和蓝方的随机数对应的图片的显示标签
 	private JLabel redLabel;
 	private JLabel blueLabel;
+
 	// HashMap键值对存储每个玩家对应的图片
 	private HashMap<JLabel, Integer> hm = new HashMap<JLabel, Integer>();
+
 	// 显示分数标签
 	private JLabel showScore;
+
+	// 玩的次数
+	private int playTimes = 1;
 
 	/**
 	 * Create the frame.
@@ -205,8 +214,8 @@ public class Game0 extends JFrame {
 		// 刷新游戏
 		flushGame();
 
-		// 检测游戏是否达到通过条件
-		if (this.rightCount == 3) {
+		// 检测游戏是否达到通过条件 --- 达到回合数的分数
+		if (this.rightCount == 3 * this.playTimes) {
 
 			// 记录玩家历史得分
 			InputOutputStreamUtil.insertDataFile(1, this.currentAccount, this.rightCount);
@@ -222,10 +231,10 @@ public class Game0 extends JFrame {
 					JOptionPane.YES_NO_OPTION) == 0) {
 
 				// 将玩家之前的积分与现在的积分相加后，添加到账户里
-				this.rightCount += dbdi.getScore(this.currentAccount);
+				int sumScore = this.rightCount / this.playTimes + dbdi.getScore(this.currentAccount);
 
 				// 更新玩家的积分保存到account账户里
-				if (dbdi.update(this.currentAccount, this.rightCount)) {
+				if (dbdi.update(this.currentAccount, sumScore)) {
 					JOptionPane.showMessageDialog(contentPane, "保存成功!");
 				} else {
 					JOptionPane.showMessageDialog(contentPane, "出现了一点小问题，数据保存失败!");
@@ -235,18 +244,22 @@ public class Game0 extends JFrame {
 				dbdi.close();
 			}
 
-			// 关闭游戏音乐
-			PlayMusicUtil.stopMusic();
+			if (JOptionPane.showConfirmDialog(contentPane, "要继续玩吗？", "Win", JOptionPane.YES_NO_OPTION) == 0) {
 
-			if (JOptionPane.showConfirmDialog(contentPane, "要再玩一把吗？", "Win", JOptionPane.YES_NO_OPTION) == 0) {
-				// 继续开启游戏窗体
-				new Game0(this.currentAccount).setVisible(true);
-				// 当前窗体释放
-				this.dispose();
+				// 重新初始化游戏
+				this.initGame();
+
+				this.playTimes++; // 回合数加一
+
 			} else {
+
+				// 关闭游戏音乐
+				PlayMusicUtil.stopMusic();
+
 				// 返回关卡选择
 				new ChoiceJFrame(this.currentAccount).setVisible(true);
 				this.dispose(); // 释放当前窗体
+
 			}
 		}
 	}

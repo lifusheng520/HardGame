@@ -56,7 +56,7 @@ public class HighestScoreJFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(HighestScoreJFrame.class.getResource("/resource/title.png")));
 		setTitle("\u5386\u53F2\u6700\u9AD8\u5206");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 371, 340);
+		setBounds(100, 100, 600, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

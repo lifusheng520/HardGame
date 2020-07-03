@@ -46,7 +46,7 @@ public class RankJFrame extends JFrame {
 		setTitle("\u73A9\u5BB6\u6392\u884C\u699C");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RankJFrame.class.getResource("/resource/title.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 303);
+		setBounds(100, 100, 530, 303);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

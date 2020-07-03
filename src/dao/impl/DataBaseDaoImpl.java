@@ -46,6 +46,10 @@ public class DataBaseDaoImpl implements DataBaseDao {
 		}
 	}
 
+	public Connection getConnection() {
+		return this.conn;
+	}
+
 	// 查询account的记录，并比对账号密码是否正确 正确返回true
 	@Override
 	public boolean query(String account, String password) {
@@ -164,7 +168,7 @@ public class DataBaseDaoImpl implements DataBaseDao {
 		return true;
 	}
 
-	// 初始化账号
+	// 初始化总分
 	@Override
 	public boolean initScore(String account) {
 		if (account == null)
@@ -329,6 +333,31 @@ public class DataBaseDaoImpl implements DataBaseDao {
 			}
 		} catch (SQLException e) {
 			System.out.println("数据库异常！");
+		}
+
+		return flag;
+	}
+
+	// 删除给定表中所有数据
+	@Override
+	public boolean deleteAllRecord(String tableName) {
+		if (conn == null)
+			return false;
+		if (tableName == null)
+			return false;
+
+		boolean flag = true;
+
+		// 拼接表名
+		String sql = "truncate table " + tableName;
+
+		try {
+			pstate = conn.prepareStatement(sql);
+			pstate.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// System.out.println("数据库异常！");
+			// flag = false;
 		}
 
 		return flag;
