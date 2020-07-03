@@ -20,22 +20,22 @@ public class GameTimerUtil extends TimerTask {
 
 	// 倒计时标签
 	private JLabel jtime;
-	
+
 	// 获取当前系统时间
 	private long startTime;
-	
+
 	// 剩余时间 秒
 	private long timeLeft;
-	
+
 	// 锁对象
 	private Lock lock = new ReentrantLock();
-	
+
 	// 游戏控制对象
 	private GameTimerDao gameControl;
-	
+
 	// 游戏时长
 	private long gameTime;
-	
+
 	// 内置计时器对象
 	private Timer timer;
 
@@ -58,14 +58,14 @@ public class GameTimerUtil extends TimerTask {
 		this.startTime = System.currentTimeMillis();
 		this.timer = new Timer();
 	}
-	
+
 	/**
 	 * 启动任务
 	 */
 	public void startRun() {
 		this.timer.schedule(this, 0, 500);
 	}
-	
+
 	/**
 	 * 关闭任务
 	 */
@@ -77,25 +77,26 @@ public class GameTimerUtil extends TimerTask {
 	public void run() {
 
 		this.lock.lock(); // 为操作上锁
-		
+
 		// 计算剩余的时间
 		this.timeLeft = (this.gameTime - System.currentTimeMillis() + this.startTime) / 1000;
-		
-		// 为标签设置时间
-		this.jtime.setText(String.valueOf(timeLeft));
 
-		// 刷新游戏
-		this.gameControl.flushGame();
+		if (this.jtime != null)
+			this.jtime.setText(String.valueOf(timeLeft));// 为标签设置时间
+
+		if (this.gameControl != null)
+			this.gameControl.flushGame();// 刷新游戏
 
 		// 如果没有时间了
 		if (this.timeLeft <= 0) {
-			
+
 			// 时间结束开始游戏结算
-			this.gameControl.countGame();
-			
-			this.timer.cancel();	// 取消任务
-			
-			this.lock.unlock();		// 解开线程锁
+			if (this.gameControl != null)
+				this.gameControl.countGame();
+
+			this.timer.cancel(); // 取消任务
+
+			this.lock.unlock(); // 解开线程锁
 			return;
 		}
 
