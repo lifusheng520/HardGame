@@ -313,7 +313,7 @@ public class ChoiceJFrame extends JFrame {
 
 	// 查看历史最高得分
 	private void gotoHighestScore() {
-		new HighestScoreJFrame(this.currentAccount).setVisible(true);
+		new HighestScoreJFrame(this.currentAccount, false).setVisible(true);
 		this.dispose();
 	}
 

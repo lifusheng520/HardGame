@@ -1,4 +1,4 @@
-package addData;
+package junit;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,7 +34,7 @@ public class AddFileData {
 				double random = Math.random();
 
 				// 拼接得分
-				sb.append("=").append((int) (random * 10000) - (int) (random * 10000) / ((int) (random * 10000) / 4 + 1));
+				sb.append("=").append((int) (random * 100000) - (int) (random * 100000) / ((int) (random * 100000) / 4 + 1));
 
 				// 写入文件
 				bw.write(String.valueOf(sb));

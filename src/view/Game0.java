@@ -217,11 +217,19 @@ public class Game0 extends JFrame {
 		// 检测游戏是否达到通过条件 --- 达到回合数的分数
 		if (this.rightCount == 3 * this.playTimes) {
 
-			// 记录玩家历史得分
-			InputOutputStreamUtil.insertDataFile(1, this.currentAccount, this.rightCount);
-
 			// 创建数据库操作实现类对象
 			DataBaseDaoImpl dbdi = new DataBaseDaoImpl();
+
+			// 开启下一关
+			if (dbdi.openNextLevel(this.currentAccount, 1)) {
+
+				// 记录玩家历史得分
+				InputOutputStreamUtil.insertDataFile(1, this.currentAccount, this.rightCount);
+			} else {
+
+				// 如果已经通过则修改得分即可
+				InputOutputStreamUtil.updateAccountScore(currentAccount, 1, this.rightCount);
+			}
 
 			// 开启下一关
 			dbdi.openNextLevel(this.currentAccount, 1);

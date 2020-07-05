@@ -139,4 +139,13 @@ public interface DataBaseDao {
 	 * @return 成功返回true 否则false
 	 */
 	public abstract boolean deleteAllRecord(String tableName);
+
+	/**
+	 * 从数据库注销玩家账号，删除玩家的所有游戏记录
+	 * 
+	 * @param account
+	 *            要注销的账号
+	 * @return 成功返回true
+	 */
+	public abstract boolean closeAccount(String account);
 }

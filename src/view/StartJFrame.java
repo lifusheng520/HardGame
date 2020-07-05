@@ -9,13 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import dao.impl.DataBaseDaoImpl;
 import util.JFrameToolUtil;
 import util.PlayMusicUtil;
-
-import javax.swing.JMenuItem;
 
 /**
  * 开始游戏窗体模块
@@ -169,6 +170,29 @@ public class StartJFrame extends JFrame {
 		});
 		button_3.setBounds(346, 205, 99, 34);
 		contentPane.add(button_3);
+
+		JButton btnNewButton_2 = new JButton("\u6CE8\u9500\u8D26\u53F7");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DataBaseDaoImpl dbdi = new DataBaseDaoImpl();
+
+				// 注销当前账号
+				if (dbdi.closeAccount(currentAccount)) {
+					JOptionPane.showMessageDialog(contentPane, "账号注销成功,下次再见！");
+
+					// 返回登录
+					new PlayerLogin().setVisible(true);
+					(StartJFrame.this).dispose();// 释放窗体资源
+
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "账号注销失败！");
+				}
+
+				dbdi.close();// 释放资源
+			}
+		});
+		btnNewButton_2.setBounds(345, 157, 99, 34);
+		contentPane.add(btnNewButton_2);
 
 		// 设置不可更改窗体大小
 		this.setResizable(false);

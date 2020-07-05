@@ -281,8 +281,18 @@ public class Game2 extends JFrame implements GameTimerDao {
 		// 判断是否到达通关条件
 		if (this.score >= 5) {
 
-			if (JOptionPane.showConfirmDialog(contentPane, "恭喜过关，已经开启下一关！", "", JOptionPane.YES_NO_OPTION) == 0)
-				dbdi.openNextLevel(this.currentAccount, 3); // 开启下一关
+			JOptionPane.showMessageDialog(contentPane, "恭喜过关，已经开启下一关！");
+
+			// 开启下一关
+			if (dbdi.openNextLevel(this.currentAccount, 3)) {
+
+				// 记录玩家历史得分
+				InputOutputStreamUtil.insertDataFile(3, this.currentAccount, this.score);
+			} else {
+
+				// 如果已经通过则修改得分即可
+				InputOutputStreamUtil.updateAccountScore(currentAccount, 3, this.score);
+			}
 
 		} else {
 			JOptionPane.showMessageDialog(contentPane, "很遗憾，闯关失败！");

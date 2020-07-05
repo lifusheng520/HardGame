@@ -346,7 +346,7 @@ public class DataBaseDaoImpl implements DataBaseDao {
 		if (tableName == null)
 			return false;
 
-		boolean flag = true;
+		boolean flag = true; // 标记
 
 		// 拼接表名
 		String sql = "truncate table " + tableName;
@@ -358,6 +358,41 @@ public class DataBaseDaoImpl implements DataBaseDao {
 			e.printStackTrace();
 			// System.out.println("数据库异常！");
 			// flag = false;
+		}
+
+		return flag;
+	}
+
+	// 游戏销户 删除玩家所有记录
+	@Override
+	public boolean closeAccount(String account) {
+		if (conn == null)
+			return false;
+
+		boolean flag = true;
+
+		// 定义SQL语句
+		String sql = "delete from player where account = ?";
+		String sql2 = "delete from playerlevel where account = ?";
+		String sql3 = "delete from playerscore where account = ?";
+
+		try {
+			pstate = conn.prepareStatement(sql);
+			pstate.setString(1, account);
+			pstate.executeUpdate();
+
+			pstate = conn.prepareStatement(sql2);
+			pstate.setString(1, account);
+			pstate.executeUpdate();
+
+			pstate = conn.prepareStatement(sql3);
+			pstate.setString(1, account);
+			pstate.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			// System.out.println("数据库异常！");
+			flag = false;
 		}
 
 		return flag;
